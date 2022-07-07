@@ -9,12 +9,12 @@ import {
     UseFilters,
     Param,
     ParseIntPipe,
-    UseInterceptors
+    UseInterceptors, ValidationPipe, UsePipes, Body
 } from '@nestjs/common';
 import { CatsService } from "./cats.service";
 import {HttpExceptionFilter} from "../common/exceptions/http-exception.filter";
-import {PositiveIntPipe} from "../common/pipes/positiveint.pipe";
 import {SuccessInterceptor} from "../common/interceptors/success.interceptor";
+import {CatRequestDto} from "./dto/cats.request.dto";
 
 @Controller('cats')
 @UseInterceptors(SuccessInterceptor)
@@ -28,8 +28,8 @@ export class CatsController {
     }
 
     @Post()
-    async signUp() {
-        return 'sign up';
+    async signUp(@Body() body: CatRequestDto) {
+        return await this.catService.signUp(body);
     }
 
     @Post('login')
