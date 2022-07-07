@@ -1,6 +1,7 @@
 import { SchemaOptions, Document } from "mongoose";
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import {IsEmail, IsNotEmpty, MaxLength, MinLength, IsString, IsUrl} from "class-validator";
+import {ApiProperty} from "@nestjs/swagger";
 
 const options: SchemaOptions = {
     timestamps: true
@@ -8,6 +9,11 @@ const options: SchemaOptions = {
 
 @Schema(options)
 export class Cat extends Document {
+    @ApiProperty({
+        example: 'aaa@bbb.com',
+        description: 'email',
+        required: true
+    })
     @Prop({
         required: true,
         unique: true
@@ -17,6 +23,11 @@ export class Cat extends Document {
     @IsEmail()
     email: string;
 
+    @ApiProperty({
+        example: 'ahaha',
+        description: 'name',
+        required: true
+    })
     @Prop({
         required: true
     })
@@ -25,6 +36,11 @@ export class Cat extends Document {
     @MaxLength(20)
     name: string;
 
+    @ApiProperty({
+        example: '12345678',
+        description: 'password',
+        required: true
+    })
     @Prop({
         required: true
     })

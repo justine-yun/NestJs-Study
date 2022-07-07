@@ -1,18 +1,3 @@
-import {IsEmail, IsNotEmpty, IsString, MaxLength, MinLength} from 'class-validator';
+import {Cat} from "../cats.schema";
 
-export class CatRequestDto {
-  @IsNotEmpty()
-  @IsEmail()
-  email: string;
-
-  @IsNotEmpty()
-  @IsString()
-  @MaxLength(20)
-  name: string;
-
-  @IsNotEmpty()
-  @IsString()
-  @MinLength(4)
-  @MaxLength(20)
-  password: string;
-}
+export class CatRequestDto extends Cat {}
