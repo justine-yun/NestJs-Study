@@ -1,10 +1,8 @@
 import {Injectable, UnauthorizedException} from '@nestjs/common';
 import {CatRequestDto} from "./dto/cats.request.dto";
-import {InjectModel} from "@nestjs/mongoose";
-import {Cat} from "./cats.schema";
-import {Model} from "mongoose";
 import * as bcrypt from 'bcrypt';
 import {CatsRepository} from "./cats.repository";
+import {AuthService} from "../auth/auth.service";
 
 @Injectable()
 export class CatsService {
