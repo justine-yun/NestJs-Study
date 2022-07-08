@@ -1,5 +1,5 @@
-import { SchemaOptions, Document } from "mongoose";
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import {SchemaOptions, Document} from "mongoose";
+import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
 import {IsEmail, IsNotEmpty, MaxLength, MinLength, IsString, IsUrl} from "class-validator";
 import {ApiProperty} from "@nestjs/swagger";
 
