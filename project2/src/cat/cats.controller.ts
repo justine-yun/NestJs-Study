@@ -1,24 +1,20 @@
-import { Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseInterceptors } from "@nestjs/common";
+import { Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from "@nestjs/common";
 import { PositiveIntPipe } from "src/common/pipes/positiveInt.pipe";
 import { CatsService } from "./cats.service";
-import { SuccessInterceptor } from "src/common/interceptors/success.intercepotr";
 
 @Controller("cats")
-@UseInterceptors(SuccessInterceptor)
 export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
   @Get()
   getAllCat() {
     return {
-      cats: "get all cat",
+      cat: "all cat",
     };
   }
 
   @Get(":id")
-  GetOneCat(@Param("id", ParseIntPipe, PositiveIntPipe) id: number) {
-    console.log(id);
-    console.log(typeof id);
+  getOneCat(@Param("id", ParseIntPipe, PositiveIntPipe) id: number) {
     return "get one cat";
   }
 
