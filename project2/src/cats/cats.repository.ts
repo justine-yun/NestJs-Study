@@ -10,7 +10,8 @@ export class CatsRepository {
 
   async existsByEmail(email: string): Promise<boolean> {
     try {
-      const result = await this.catModel.exists({ email }).lean();
+      const result = await this.catModel.exists({ email }).lean().exec();
+      console.log(result);
       return result ? true : false;
     } catch (error) {
       throw new HttpException("DB error", 500);
