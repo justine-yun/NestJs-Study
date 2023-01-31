@@ -11,7 +11,7 @@ export class CatsRepository {
   async existsByEmail(email: string): Promise<boolean> {
     try {
       const result = await this.catModel.exists({ email }).lean().exec();
-      console.log(result);
+
       return result ? true : false;
     } catch (error) {
       throw new HttpException("DB error", 500);
@@ -20,5 +20,11 @@ export class CatsRepository {
 
   async create(cat: CatRequestDto) {
     return await this.catModel.create(cat);
+  }
+
+  async findCatByEmail(email: string): Promise<Cat | null> {
+    const cat = await this.catModel.findOne({ email }).exec();
+
+    return cat;
   }
 }
