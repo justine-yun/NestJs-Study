@@ -3,6 +3,7 @@ import { JwtModule } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
 import { CatsModule } from "src/cats/cats.module";
 import { AuthService } from "./auth.service";
+import { JwtStrategy } from "./jwt/jwt.strategy";
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { AuthService } from "./auth.service";
     }),
     forwardRef(() => CatsModule),
   ],
-  providers: [AuthService],
+  providers: [AuthService, JwtStrategy],
   exports: [AuthService],
 })
 export class AuthModule {}
