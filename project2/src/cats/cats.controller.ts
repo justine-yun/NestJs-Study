@@ -22,6 +22,12 @@ export class CatsController {
     return cat.readOnlyData;
   }
 
+  @Get("all")
+  @ApiOperation({ summary: "모든 고양이 가져오기" })
+  async getAllCat() {
+    return await this.catsService.getAllCat();
+  }
+
   @Post()
   @ApiOperation({ summary: "회원가입" })
   @ApiResponse({
