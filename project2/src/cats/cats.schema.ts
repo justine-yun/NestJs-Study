@@ -15,7 +15,8 @@ export class Cat extends Document {
     required: true,
   })
   @Prop({
-    isRequired: true,
+    type: String,
+    required: true,
     unique: true,
   })
   @IsNotEmpty()
@@ -28,7 +29,8 @@ export class Cat extends Document {
     required: true,
   })
   @Prop({
-    isRequired: true,
+    type: String,
+    required: true,
   })
   @IsNotEmpty()
   @IsString()
@@ -40,13 +42,19 @@ export class Cat extends Document {
     required: true,
   })
   @Prop({
-    isRequired: true,
+    type: String,
+    required: true,
   })
   @IsNotEmpty()
   @IsString()
   password: string;
 
+  @ApiProperty({
+    example: "http://aaa.com",
+    description: "image url",
+  })
   @Prop({
+    type: String,
     default: "https://raw.githubusercontent.com/amamov/teaching-nestjs-a-to-z/main/images/1.jpeg",
   })
   @IsString()
