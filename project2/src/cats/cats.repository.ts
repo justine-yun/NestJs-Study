@@ -33,4 +33,14 @@ export class CatsRepository {
 
     return cat;
   }
+
+  async findByIdAndUpdateImg(id: string, fileName: string) {
+    const cat = await this.catModel.findById(id);
+
+    cat.imgUrl = `http://localhost:8000/media/${fileName}`;
+
+    const updatedCat = await cat.save();
+
+    return updatedCat.readOnlyData;
+  }
 }
