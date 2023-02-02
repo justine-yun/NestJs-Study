@@ -11,7 +11,7 @@ import { CatsService } from "./cats.service";
   imports: [
     MongooseModule.forFeature([{ name: Cat.name, schema: CatSchema }]),
     MulterModule.register({
-      dest: "./upload",
+      dest: "./uploads",
     }),
     forwardRef(() => AuthModule),
   ],
