@@ -1,12 +1,16 @@
 import { HttpException, Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Model, Types } from "mongoose";
+import { Comment } from "src/comments/comments.schema";
 import { Cat } from "./cats.schema";
 import { CatRequestDto } from "./dto/cats.request.dto";
 
 @Injectable()
 export class CatsRepository {
-  constructor(@InjectModel(Cat.name) private readonly catModel: Model<Cat>) {}
+  constructor(
+    @InjectModel(Cat.name) private readonly catModel: Model<Cat>,
+    @InjectModel(Comment.name) private readonly commentModel: Model<Comment>,
+  ) {}
 
   async existsByEmail(email: string): Promise<boolean> {
     try {
@@ -45,6 +49,8 @@ export class CatsRepository {
   }
 
   async findAll() {
-    return await this.catModel.find();
+    const allCat = await this.catModel.find().populate({ path: "comments", model: this.commentModel });
+
+    return allCat;
   }
 }
