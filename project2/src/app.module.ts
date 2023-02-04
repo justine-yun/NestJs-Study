@@ -7,8 +7,8 @@ import mongoose from "mongoose";
 import { LoggerMiddleware } from "./common/middlewares/logger.middleware";
 import { CatsModule } from "./cats/cats.module";
 import { AuthModule } from "./auth/auth.module";
-import { CommentsModule } from './comments/comments.module';
-import { AwsModule } from './aws/aws.module';
+import { CommentsModule } from "./comments/comments.module";
+import { AwsModule } from "./aws/aws.module";
 
 @Module({
   imports: [
