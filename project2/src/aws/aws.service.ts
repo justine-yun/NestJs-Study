@@ -15,12 +15,12 @@ export class AwsService {
     this.s3BucketName = process.env.AWS_S3_BUCKET;
   }
 
-  async uploadFileToS3(file: Express.Multer.File) {
+  async uploadFileToS3(file: Express.Multer.File, filePath: string) {
     try {
       const s3Object = await this.awsS3
         .putObject({
           Bucket: this.s3BucketName,
-          Key: "test/" + file.originalname,
+          Key: filePath,
           Body: file.buffer,
           ACL: "bucket-owner-full-control",
           ContentType: file.mimetype,

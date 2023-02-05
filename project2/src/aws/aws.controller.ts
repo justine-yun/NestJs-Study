@@ -9,6 +9,6 @@ export class AwsController {
   @Post("test")
   @UseInterceptors(FileInterceptor("image"))
   async test(@UploadedFile() file: Express.Multer.File) {
-    return await this.awsService.uploadFileToS3(file);
+    return await this.awsService.uploadFileToS3(file, `test/${file.originalname}`);
   }
 }

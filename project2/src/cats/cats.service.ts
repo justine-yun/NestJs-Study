@@ -3,10 +3,11 @@ import * as bcrypt from "bcrypt";
 import { CatRequestDto } from "./dto/cats.request.dto";
 import { CatsRepository } from "./cats.repository";
 import { Cat } from "./cats.schema";
+import { AwsService } from "src/aws/aws.service";
 
 @Injectable()
 export class CatsService {
-  constructor(private readonly catsRepository: CatsRepository) {}
+  constructor(private readonly catsRepository: CatsRepository, private readonly awsService: AwsService) {}
 
   async signUp(body: CatRequestDto) {
     const { email, name, password } = body;
@@ -28,10 +29,11 @@ export class CatsService {
     return cat.readOnlyData;
   }
 
-  async uploadImg(cat: Cat, files: Array<Express.Multer.File>) {
-    const fileName = `cats/${files[0].filename}`;
+  async uploadImg(cat: Cat, file: Express.Multer.File) {
+    const filePath = `cats/${Date.now()}${file.originalname}`;
 
-    const newCat = await this.catsRepository.findByIdAndUpdateImg(cat.id, fileName);
+    await this.awsService.uploadFileToS3(file, filePath);
+    const newCat = await this.catsRepository.findByIdAndUpdateImg(cat.id, filePath);
 
     return newCat;
   }
