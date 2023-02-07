@@ -1,14 +1,14 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Controller, Get, Render } from "@nestjs/common";
 
 @Controller()
 export class AppController {
   @Get()
-  @Render('index')
+  @Render("index")
   root(): object {
     return {
       data: {
-        title: 'Chatting',
-        content: 'hello world 2',
+        title: "Chatting",
+        content: "hello world 2",
       },
     };
   }
