@@ -1,4 +1,4 @@
-const socket = io("/");
+const socket = io("/chatting");
 
 const getElementById = (id) => document.getElementById(id) || null;
 
