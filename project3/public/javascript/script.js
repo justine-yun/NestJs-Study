@@ -52,6 +52,9 @@ socket.on("new_chat", (data) => {
 
   drawNewChat(`${userName}: ${chat}`);
 });
+socket.on("disconnect_user", (data) => {
+  drawNewChat(`※ ${data} is disconnected`);
+});
 
 function init() {
   formElement.addEventListener("submit", handleSubmit);
