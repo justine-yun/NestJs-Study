@@ -28,6 +28,7 @@ export class ChatGateway implements OnGatewayInit, OnGatewayConnection, OnGatewa
 
   @SubscribeMessage("new_user")
   handleMessage(@MessageBody() userName: string, @ConnectedSocket() socket: Socket) {
-    socket.emit("hello_user", "hello " + userName);
+    socket.broadcast.emit("user_connected", userName);
+    return userName;
   }
 }
